@@ -47,12 +47,12 @@ htmlcov/
 test/
 
 # Environment & secrets
-.env
-.env.local
-.env.*.local
-*.pem
-*.key
-secrets/
+# .env
+# .env.local
+# .env.*.local
+# *.pem
+# *.key
+# secrets/
 
 # Logs
 *.log
