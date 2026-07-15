@@ -107,8 +107,15 @@ gunicorn -w 2 -b 0.0.0.0:5520 main:app
 ## Docker 部署
 
 ```bash
-docker build -t ai-api .
-docker run -p 5520:5520 --env-file .env ai-api
+docker build -t ai-api:v0.1 .
+docker run -d --name myapi \
+  --env-file .env \
+  -e TZ=Asia/Shanghai \
+  --restart unless-stopped \
+  -v ~/aiapi/api:/app/api \
+  -v ~/aiapi/prompts:/app/prompts \
+  -p 5520:5520 \
+  ai-api:v0.1
 ```
 
 服务默认运行在 `http://localhost:5520`。
