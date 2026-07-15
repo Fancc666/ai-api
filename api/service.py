@@ -18,7 +18,7 @@ bp = Blueprint('service', __name__, url_prefix='/api/service')
 @bp.route('/')
 def hello_api():
     return jsonify({
-        "code": 1,
+        "code": 0,
         "msg": "please select a service",
         "data": get_glob()
     })

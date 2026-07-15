@@ -148,7 +148,7 @@ GET /api/service/
 
 ```json
 {
-  "code": 1,
+  "code": 0,
   "msg": "please select a service",
   "data": ["pinyin.md"]
 }
