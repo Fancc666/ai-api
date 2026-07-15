@@ -4,7 +4,7 @@
 
 ## 项目特色
 
-### 🚀 Prompt 即 API
+### Prompt 即 API
 
 这是本项目最核心的设计理念：**添加 Prompt 文件 = 添加 API 接口**。
 
@@ -16,18 +16,18 @@ prompts/
   └── translate.md    →  POST /api/service/translate (翻译服务)
 ```
 
-### 🧩 蓝图自动发现
+### 蓝图高扩展性
 
 `api/` 目录下的 Python 模块会被自动扫描和注册，新增蓝图模块无需手动 import，开箱即用。
 
-### 🔧 技术栈
+### 技术栈
 
 | 组件 | 技术 |
 |------|------|
 | Web 框架 | Flask 3.x |
-| AI 调用 | OpenAI SDK (兼容多厂商) |
+| AI 调用 | OpenAI SDK |
 | 生产部署 | Gunicorn + Docker |
-| 包管理 | uv (Python 包管理器) |
+| 包管理 | uv |
 | 运行环境 | Python ≥ 3.12 |
 
 ## 项目结构
@@ -60,10 +60,7 @@ ai-api/
 ### 1. 环境准备
 
 ```bash
-# 确保 Python >= 3.12
 python --version
-
-# 安装 uv（如未安装）
 pip install uv
 ```
 
@@ -85,19 +82,11 @@ cp .env.example .env
 API_HOST=https://your-llm-api-host/v1
 API_KEY=your-api-key
 MODEL_NAME=your-model-name
-DEBUG=false
 ```
 
 ### 4. 启动服务
 
-**开发模式**（Flask 内置服务器）：
-
-```bash
-# 直接运行（DEBUG=true 时开启热重载）
-python main.py
-```
-
-**生产模式**（Gunicorn）：
+**Gunicorn**：
 
 ```bash
 ./start.sh
@@ -108,6 +97,7 @@ gunicorn -w 2 -b 0.0.0.0:5520 main:app
 
 ```bash
 docker build -t ai-api:v0.1 .
+
 docker run -d --name myapi \
   --env-file .env \
   -e TZ=Asia/Shanghai \
@@ -210,8 +200,9 @@ input=你好世界
 }
 ```
 
-- JSON 输出中文不转义（`ensure_ascii = False`）
-- 默认配置：全局 CORS 允许跨域访问
+默认配置：
+- JSON 输出中文
+- 全局 CORS 允许跨域访问
 
 ## 许可证
 
