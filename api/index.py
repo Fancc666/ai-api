@@ -7,6 +7,6 @@ bp = Blueprint('index', __name__, url_prefix='/api')
 def hello_api():
     return jsonify({
         "code": 0,
-        "msg": "hello world",
+        "msg": "API is running...",
         "data": None
     })

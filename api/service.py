@@ -5,11 +5,23 @@ from utils.AITool import AIHandler
 def get_prompt(pt) -> Path:
     filePath = Path(__file__).parent.parent / 'prompts' / f'{pt}.md'
     return filePath
+def get_glob() -> list:
+    filePath = Path(__file__).parent.parent / 'prompts'
+    globs = list(filePath.glob("*.md"))
+    return list(map(lambda x: x.name, globs))
 def get_data(file):
     with open(file, 'r') as f:
         return f.read()
 
 bp = Blueprint('service', __name__, url_prefix='/api/service')
+
+@bp.route('/')
+def hello_api():
+    return jsonify({
+        "code": 1,
+        "msg": "please select a service",
+        "data": get_glob()
+    })
 
 @bp.route('/<string:serviceName>', methods=['GET', 'POST'])
 def service_api(serviceName):
