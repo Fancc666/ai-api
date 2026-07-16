@@ -8,10 +8,8 @@ COPY pyproject.toml uv.lock ./
 # 使用 uv sync
 RUN uv sync
 
-# 复制项目源码
+# 复制项目源码（包含 start.sh）
 COPY . .
-# 复制启动脚本并赋予执行权限
-COPY start.sh ./
 RUN chmod +x start.sh
 # 暴露端口
 EXPOSE 5520
